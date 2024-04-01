@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %}{{ pet.name }} Details{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h1>{{ pet.name }} Details</h1>
+  <p>Species: {{ pet.species }}</p>
+  {% if pet.photo_url %}
+  <img
+    src="{{ pet.photo_url }}"
+    alt="{{ pet.name }}"
+    style="max-width: 200px"
+  />
+  {% endif %}
+  <p>Age: {{ pet.age if pet.age else 'Unknown' }}</p>
+  <form method="post" action="{{ url_for('pet_details', pet_id=pet.id) }}">
+    {{ form.hidden_tag() }} {{ form.name.label }}: {{ form.name }}<br />
+    {{ form.species.label }}: {{ form.species }}<br />
+    {{ form.photo_url.label }}: {{ form.photo_url }}<br />
+    {{ form.age.label }}: {{ form.age }}<br />
+    {{ form.notes.label }}: {{ form.notes }}<br />
+    {{ form.available.label }}: {{ form.available }}<br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

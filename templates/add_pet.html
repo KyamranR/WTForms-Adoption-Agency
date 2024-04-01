@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block title %}Add New Pet{% endblock %} {% block
+content %}
+
+<div class="container">
+  <h1>Add a Pet</h1>
+  <form method="post">
+    {{ form.csrf_token }} {{ form.name.label }} {{ form.name }} {{
+    form.species.label }} {{ form.species }} {{ form.photo_url.label }} {{
+    form.photo_url }} {{ form.age.label }} {{ form.age }} {{ form.notes.label }}
+    {{ form.notes }} {{ form.available.label }} {{ form.available }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

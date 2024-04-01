@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block title %}Pet Adoption{% endblock %} {% block
+content %}
+
+<div class="container">
+  <h1>Pets For Adoption</h1>
+  <ul class="list-group">
+    {% for pet in pets %}
+    <li class="list-group-item">
+      <h2>{{ pet.name }}</h2>
+      {% if pet.photo_url %}
+      <img
+        src="{{ pet.photo_url }}"
+        alt="{{ pet.name }}"
+        style="max-width: 200px"
+      />
+      {% endif %}
+      <p>Species: {{ pet.species }}</p>
+      <p>Age: {{ pet.age if pet.age else 'Unknown' }}</p>
+      {% if pet.available %}
+      <strong>Available</strong>
+      {% else %}
+      <strong>Not Available</strong>
+      {% endif %}
+      <a
+        href="{{ url_for('pet_details', pet_id=pet.id) }}"
+        class="btn btn-primary"
+        >Details</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('add_pet') }}" class="btn btn-success mt-3">Add a Pet</a>
+</div>
+
+{% endblock %}
